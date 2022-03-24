@@ -1,0 +1,312 @@
+mysql> create database AddressBook;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| addressbook        |
+| information_schema |
+| mysql              |
+| payroll_service    |
+| payrollservice     |
+| performance_schema |
+| sakila             |
+| sample             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.01 sec)
+
+mysql> addressBook;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'addressBook' at line 1
+mysql> use addressbook;
+Database changed
+mysql> create table  addressbook (id int not null auto_increment, firstname varchar(50) not null, lastname varchar(52) not null, address varchar(80) not null, city varchar(70) not null, state varchar(90) not null, zip varchar(15) not null, phonenumber varchar(20) not null, email varchar(85) not null,primary key(id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe  addressbook;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int         | NO   | PRI | NULL    | auto_increment |
+| firstname   | varchar(50) | NO   |     | NULL    |                |
+| lastname    | varchar(52) | NO   |     | NULL    |                |
+| address     | varchar(80) | NO   |     | NULL    |                |
+| city        | varchar(70) | NO   |     | NULL    |                |
+| state       | varchar(90) | NO   |     | NULL    |                |
+| zip         | varchar(15) | NO   |     | NULL    |                |
+| phonenumber | varchar(20) | NO   |     | NULL    |                |
+| email       | varchar(85) | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+9 rows in set (0.01 sec)
+
+mysql> inser into addressbook (firstname,lastname,address,city,state,zip,phonenumber,email) values ('PRIYANKA','KS','DVG KARNATAKA','DAVANGERE','KARANATAKA','577004','9009009009','priya@gmail.com')
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inser into addressbook (firstname,lastname,address,city,state,zip,phonenumber,em' at line 1
+mysql> inser into addressbook (firstname,lastname,address,city,state,zip,phonenumber,email) values ('PRIYANKA','KS','DVG KARNATAKA','DAVANGERE','KARANATAKA','577004','9009009009','priya@gmail.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inser into addressbook (firstname,lastname,address,city,state,zip,phonenumber,em' at line 1
+mysql> inser into addressbook (firstname,lastname,address,city,state,zip,phonenumber,email) values ('PRIYANKA','KS','DVG KARNATAKA','DAVANGERE','KARANATAKA','577004','9009009009');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inser into addressbook (firstname,lastname,address,city,state,zip,phonenumber,em' at line 1
+mysql>
+mysql> select * from addressbook
+    -> ;
+Empty set (0.02 sec)
+
+mysql> insert into addressbook (firstname,lastname,address,city,state,zip,phonenumber,email) values ('PRIYANKA','KS','DVG KARNATAKA','DAVANGERE','KARANATAKA','577004','9009009009', 'priya@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address       | city      | state      | zip    | phonenumber | email           |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+1 row in set (0.01 sec)
+
+mysql> insert into addressbook (firstname,lastname,address,city,state,zip,phonenumber,email) values ('NAYANA','KS','DVG KARNATAKA','DAVANGERE','KARANATAKA','577004','8008008008', 'nayu@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address       | city      | state      | zip    | phonenumber | email           |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
+|  2 | NAYANA    | KS       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into addressbook (firstname,lastname,address,city,state,zip,phonenumber,email) values ('SANJANA','MJ','DVG KARNATAKA','DAVANGERE','KARANATAKA','577002','7007007007', 'sanju@gmail.com');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address       | city      | state      | zip    | phonenumber | email           |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
+|  2 | NAYANA    | KS       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  |
+|  3 | SANJANA   | MJ       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577002 | 7007007007  | sanju@gmail.com |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+3 rows in set (0.01 sec)
+
+mysql> insert into addressbook (firstname,lastname,address,city,state,zip,phonenumber,email) values ('KAVYA','M','BDVT KARNATAKA','BHADRAVTHI','KARANATAKA','577301','6006006006', 'kavya@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
+|  2 | NAYANA    | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  |
+|  3 | SANJANA   | MJ       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577002 | 7007007007  | sanju@gmail.com |
+|  4 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> update addressbook set lastname="RK" where id=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  |
+|  3 | SANJANA   | MJ       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577002 | 7007007007  | sanju@gmail.com |
+|  4 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+4 rows in set (0.01 sec)
+
+mysql> delete from addressbook where firstname="KAVYA";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address       | city      | state      | zip    | phonenumber | email           |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
+|  2 | NAYANA    | RK       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  |
+|  3 | SANJANA   | MJ       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577002 | 7007007007  | sanju@gmail.com |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into addressbook (firstname,lastname,address,city,state,zip,phonenumber,email) values ('KAVYA','M','BDVT KARNATAKA','BHADRAVTHI','KARANATAKA','577301','6006006006', 'kavya@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  |
+|  3 | SANJANA   | MJ       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577002 | 7007007007  | sanju@gmail.com |
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+4 rows in set (0.01 sec)
+
+mysql> delete from addressbook where firstname="SANJANA";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  |
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from addressbook where city="BHADRAVTHI";
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> select count(address) from addressbook;
++----------------+
+| count(address) |
++----------------+
+|              3 |
++----------------+
+1 row in set (0.02 sec)
+
+mysql>
+mysql> select * from addressbook order by firstname asc;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  |
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from addressbook where city="DAVANGERE" order by firstname asc;
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+| id | firstname | lastname | address       | city      | state      | zip    | phonenumber | email           |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+|  2 | NAYANA    | RK       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  |
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA | DAVANGERE | KARANATAKA | 577004 | 9009009009  | priya@gmail.com |
++----+-----------+----------+---------------+-----------+------------+--------+-------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table addressbook add Name varchar(255), Type varchar(255);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Type varchar(255)' at line 1
+mysql> alter table addressbook add Name varchar(255);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           | Name |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com | NULL |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  | NULL |
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com | NULL |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+
+3 rows in set (0.01 sec)
+
+mysql> alter table addressbook add Type varchar(255);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           | Name | Type |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com | NULL | NULL |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  | NULL | NULL |
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com | NULL | NULL |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> update addressbook set Type="Family" where id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           | Name | Type   |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com | NULL | Family |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  | NULL | NULL   |
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com | NULL | NULL   |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+3 rows in set (0.01 sec)
+
+mysql> update addressbook set Type="Friend" where id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update addressbook set Type="Friend" where id=1;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           | Name | Type   |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com | NULL | Friend |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  | NULL | NULL   |
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com | NULL | NULL   |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update addressbook set Type="Family" where id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update addressbook set Type="Friend" where id=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update addressbook set Type="Friend" where id=3;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           | Name | Type   |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com | NULL | Family |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  | NULL | Friend |
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com | NULL | NULL   |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update addressbook set Type="Friend" where id=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           | Name | Type   |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com | NULL | Family |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  | NULL | Friend |
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com | NULL | Friend |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select count(*)  from  addressbook where ContactType = "family";
+ERROR 1054 (42S22): Unknown column 'ContactType' in 'where clause'
+mysql> select count(*)  from  addressbook where Type = "family";
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select * from addressbook;
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+| id | firstname | lastname | address        | city       | state      | zip    | phonenumber | email           | Name | Type   |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
+|  1 | PRIYANKA  | KS       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 9009009009  | priya@gmail.com | NULL | Family |
+|  2 | NAYANA    | RK       | DVG KARNATAKA  | DAVANGERE  | KARANATAKA | 577004 | 8008008008  | nayu@gmail.com  | NULL | Friend |
+|  5 | KAVYA     | M        | BDVT KARNATAKA | BHADRAVTHI | KARANATAKA | 577301 | 6006006006  | kavya@gmail.com | NULL | Friend |
++----+-----------+----------+----------------+------------+------------+--------+-------------+-----------------+------+--------+
