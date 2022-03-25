@@ -12,6 +12,7 @@ public class AddressBookData {
     public String state;
     public String zip;
 
+
     public AddressBookData( String typeId, String firstName, String lastName, String phoneNumber, String email, String city, String state, String zip) {
         this.typeId = typeId;
         this.firstName = firstName;
@@ -23,20 +24,7 @@ public class AddressBookData {
         this.zip = zip;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AddressBookData)) return false;
-        AddressBookData that = (AddressBookData) o;
-        return Objects.equals(typeId, that.typeId) &&
-                Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName) &&
-                Objects.equals(phoneNumber, that.phoneNumber) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(city, that.city) &&
-                Objects.equals(state, that.state) &&
-                Objects.equals(zip, that.zip);
-    }
+
 
     @Override
     public String toString() {
@@ -50,5 +38,19 @@ public class AddressBookData {
                 ", state='" + state + '\'' +
                 ", zip='" + zip + '\'' +
                 '}';
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AddressBookData)) return false;
+        AddressBookData that = (AddressBookData) o;
+        return Objects.equals(typeId, that.typeId) &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(phoneNumber, that.phoneNumber) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(state, that.state) &&
+                Objects.equals(zip, that.zip);
     }
 }
