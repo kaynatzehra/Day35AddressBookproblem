@@ -3,15 +3,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddressBookDBService {
+public class AddressBookDBService
+{
     public Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
     private static AddressBookDBService addressBookDBService;
-
-    public AddressBookDBService() {
+    public AddressBookDBService()
+    {
     }
-
     public static AddressBookDBService getInstance() {
         if (addressBookDBService == null) {
             addressBookDBService = new AddressBookDBService();
@@ -20,16 +20,16 @@ public class AddressBookDBService {
     }
 
     private Connection getConnection() throws SQLException {
-        String jdbcURL = "jdbc:mysql://localhost:3307/addressbook?useSSL=false";
+        String jdbcURL = "jdbc:mysql://localhost:3306/Address_Book_Service?useSSL=false";
         String userName = "root";
-        String password = "root";
+        String password = "K@inu786";
         connection = DriverManager.getConnection(jdbcURL, userName, password);
         System.out.println(connection + " connection successful");
         return connection;
     }
 
     public List<AddressBookData> readDate() {
-        String query = "SELECT * from addressbook";
+        String query = "SELECT * from addressBook";
         return this.getAddressBookDataUsingDB(query);
     }
 
@@ -52,12 +52,11 @@ public class AddressBookDBService {
                 String typeId = resultSet.getString("type");
                 String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
-                String phoneNumber = resultSet.getString("phoneNumber");
+                String phoneNumber = resultSet.getString("mobileNumber");
                 String email = resultSet.getString("email");
                 String city = resultSet.getString("city");
                 String state = resultSet.getString("state");
                 String zip = resultSet.getString("zip");
-                String address = resultSet.getString("address");
                 addressBookList.add(new AddressBookData(typeId, firstName, lastName, phoneNumber, email, city, state, zip));
             }
         } catch (SQLException e) {

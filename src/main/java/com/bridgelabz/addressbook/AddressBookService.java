@@ -1,14 +1,15 @@
+
 package com.bridgelabz.addressbook;
 import java.util.List;
 
-public class AddressBookServiceMain {
+public class AddressBookService {
     private List<AddressBookData> addressBookList;
 
     public enum IOService {DB_IO}
 
     private static AddressBookDBService addressBookDBService;
 
-    public AddressBookServiceMain() {
+    public AddressBookService() {
         addressBookDBService = AddressBookDBService.getInstance();
     }
 

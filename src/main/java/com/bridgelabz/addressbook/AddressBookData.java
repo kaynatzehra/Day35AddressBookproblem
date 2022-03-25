@@ -28,7 +28,7 @@ public class AddressBookData {
         if (this == o) return true;
         if (!(o instanceof AddressBookData)) return false;
         AddressBookData that = (AddressBookData) o;
-        return  typeId == that.typeId &&
+        return Objects.equals(typeId, that.typeId) &&
                 Objects.equals(firstName, that.firstName) &&
                 Objects.equals(lastName, that.lastName) &&
                 Objects.equals(phoneNumber, that.phoneNumber) &&
