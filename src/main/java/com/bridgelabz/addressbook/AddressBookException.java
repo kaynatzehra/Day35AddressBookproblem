@@ -10,5 +10,4 @@ public class AddressBookException extends Throwable {
         this.type = type;
 
     }
-
 }
