@@ -8,5 +8,6 @@ public class AddressBookException extends Throwable {
     public AddressBookException(String message, ExceptionType type) {
         super(message);
         this.type = type;
+
     }
 }

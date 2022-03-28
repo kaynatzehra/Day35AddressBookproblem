@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbook;
 import java.sql.*;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import  java.util.ArrayList;
 import java.util.List;
 
 public class AddressBookDataBaseService
@@ -23,7 +24,7 @@ public class AddressBookDataBaseService
     private Connection getConnection() throws SQLException {
         String jdbcURL = "jdbc:mysql://localhost:3306/Address_Book_Service?useSSL=false";
         String userName = "root";
-        String password = "K@inu786";
+        String password = "admin123";
         connection = DriverManager.getConnection(jdbcURL, userName, password);
         System.out.println(connection + " connection successful");
         return connection;
@@ -97,5 +98,10 @@ public class AddressBookDataBaseService
         }catch (SQLException e) {
             throw new AddressBookException(e.getMessage(), AddressBookException.ExceptionType.DatabaseException);
         }
+    }
+    public List<AddressBookData> getEmployeePayrollForDateRange(LocalDate startDate, LocalDate endDate) {
+        String query = String.format("SELECT * FROM addressBook WHERE date_added BETWEEN '%s' AND '%s';",
+                Date.valueOf(startDate), Date.valueOf(endDate));
+        return this.getAddressBookDataUsingDB(query);
     }
 }
