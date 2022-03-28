@@ -34,7 +34,7 @@ public class AddressBookDataBaseService
     }
 
     public List<AddressBookData> readDate() {
-        String query = "SELECT * from addressBook";
+        String query = "SELECT * from addressbook";
         return this.getAddressBookDataUsingDB(query);
     }
 
@@ -95,7 +95,7 @@ public class AddressBookDataBaseService
     }
 
     public int updateAddressBookRecord(String name, String phoneNumber) throws AddressBookException {
-        String query = String.format("update addressBook set mobileNumber = '%s' where firstName= '%s' ;", phoneNumber, name);
+        String query = String.format("update addressbook set mobileNumber = '%s' where firstName= '%s' ;", phoneNumber, name);
         try (Connection connection = this.getConnection()) {
             Statement statement = connection.createStatement();
             return statement.executeUpdate(query);
@@ -104,12 +104,12 @@ public class AddressBookDataBaseService
         }
     }
     public List<AddressBookData> getEmployeePayrollForDateRange(LocalDate startDate, LocalDate endDate) {
-        String query = String.format("SELECT * FROM addressBook WHERE date_added BETWEEN '%s' AND '%s';",
+        String query = String.format("SELECT * FROM addressbook WHERE date_added BETWEEN '%s' AND '%s';",
                 Date.valueOf(startDate), Date.valueOf(endDate));
         return this.getAddressBookDataUsingDB(query);
     }
     public Map<String, Double> getCountOfContactsByCity() {
-        String query = "SELECT city,COUNT(city) as count from addressBook group by city;";
+        String query = "SELECT city,COUNT(city) as count from addressbook group by city;";
         Map<String, Double> countOfContacts = new HashMap<>();
         try (Connection connection = this.getConnection()) {
             statement = connection.createStatement();
@@ -125,7 +125,7 @@ public class AddressBookDataBaseService
         return countOfContacts;
     }
     public Map<String, Double> getCountOfContactsByState() {
-        String query = "SELECT state,COUNT(state) as count from addressBook group by state;";
+        String query = "SELECT state,COUNT(state) as count from addressbook group by state;";
         Map<String, Double> countOfContacts = new HashMap<>();
         try (Connection connection = this.getConnection()) {
             statement = connection.createStatement();
@@ -150,7 +150,7 @@ public class AddressBookDataBaseService
             e.printStackTrace();
         }
         try (Statement statement = connection.createStatement()) {
-            String sql = String.format("INSERT INTO addressBook (`type`,`firstName`,`lastName`,`mobileNumber`,`email`,`city`,`state`,`zip`,`date_added`) " +
+            String sql = String.format("INSERT INTO addressbook (`type`,`firstName`,`lastName`,`mobileNumber`,`email`,`city`,`state`,`zip`,`date_added`) " +
                             " VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
                     type,firstName,lastName,mobileNumber,email,city,state,zip,Date.valueOf(localDate));
             System.out.println(sql+" sql");
