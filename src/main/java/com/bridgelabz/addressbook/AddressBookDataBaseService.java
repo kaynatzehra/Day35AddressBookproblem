@@ -1,8 +1,10 @@
 package com.bridgelabz.addressbook;
 import java.sql.*;
 import java.time.LocalDate;
-import  java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AddressBookDataBaseService
 {
@@ -24,7 +26,7 @@ public class AddressBookDataBaseService
     private Connection getConnection() throws SQLException {
         String jdbcURL = "jdbc:mysql://localhost:3306/Address_Book_Service?useSSL=false";
         String userName = "root";
-        String password = "admin123";
+        String password = "K@inu786";
         connection = DriverManager.getConnection(jdbcURL, userName, password);
         System.out.println(connection + " connection successful");
         return connection;
@@ -103,5 +105,37 @@ public class AddressBookDataBaseService
         String query = String.format("SELECT * FROM addressBook WHERE date_added BETWEEN '%s' AND '%s';",
                 Date.valueOf(startDate), Date.valueOf(endDate));
         return this.getAddressBookDataUsingDB(query);
+    }
+    public Map<String, Double> getCountOfContactsByCity() {
+        String query = "SELECT city,COUNT(city) as count from addressBook group by city;";
+        Map<String, Double> countOfContacts = new HashMap<>();
+        try (Connection connection = this.getConnection()) {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                String city = resultSet.getString("city");
+                double count = resultSet.getDouble("count");
+                countOfContacts.put(city, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countOfContacts;
+    }
+    public Map<String, Double> getCountOfContactsByState() {
+        String query = "SELECT state,COUNT(state) as count from addressBook group by state;";
+        Map<String, Double> countOfContacts = new HashMap<>();
+        try (Connection connection = this.getConnection()) {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                String state = resultSet.getString("state");
+                double count = resultSet.getDouble("count");
+                countOfContacts.put(state, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countOfContacts;
     }
 }
